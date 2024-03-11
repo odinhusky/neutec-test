@@ -1,14 +1,14 @@
 <script setup>
 // import { ref } from "vue";
-const emit = defineEmits(["onToggleClick"]);
+const emit = defineEmits(["openNavContent"]);
 
-const onToggleClick = () => {
-  emit("onToggleClick");
+const openNavContent = () => {
+  emit("openNavContent");
 };
 </script>
 
 <template>
-  <button class="toggleSideBtn" @click="onToggleClick">
+  <button class="toggleSideBtn" @click="openNavContent">
     <div class="line line1"></div>
     <div class="line line2"></div>
     <div class="line line3"></div>

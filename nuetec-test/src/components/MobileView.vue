@@ -7,17 +7,28 @@ import NavContent from "./NavContent.vue";
 
 const count = ref(0);
 
-const onToggleClick = () => {
+const isShowNavContent = ref(true);
+
+const openNavContent = () => {
   console.log("onToggleClick");
+  isShowNavContent.value = true;
+};
+
+const closeNavContent = () => {
+  console.log("closeNavContent");
+  isShowNavContent.value = false;
 };
 </script>
 
 <template>
   <div class="mobile-view">
     <section class="nav">
-      <ToggleBtn @onToggleClick="onToggleClick" />
+      <ToggleBtn @openNavContent="openNavContent" />
 
-      <NavContent />
+      <NavContent
+        :isShow="isShowNavContent"
+        @closeNavContent="closeNavContent"
+      />
     </section>
   </div>
 </template>
