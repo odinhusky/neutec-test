@@ -9,6 +9,7 @@ const blocksArr = ref([
   {
     key: "b1",
     isShimmer: false,
+    ball: "1",
   },
   {
     key: "b2",
@@ -17,6 +18,7 @@ const blocksArr = ref([
   {
     key: "b3",
     isShimmer: true,
+    ball: "2",
   },
   {
     key: "b4",
@@ -33,6 +35,7 @@ const blocksArr = ref([
   {
     key: "b7",
     isShimmer: false,
+    ball: "3",
   },
   {
     key: "b8",
@@ -41,18 +44,17 @@ const blocksArr = ref([
   {
     key: "b9",
     isShimmer: true,
+    ball: "4",
   },
 ]);
 
 const isShowNavContent = ref(false);
 
 const openNavContent = () => {
-  console.log("onToggleClick");
   isShowNavContent.value = true;
 };
 
 const closeNavContent = () => {
-  console.log("closeNavContent");
   isShowNavContent.value = false;
 };
 </script>
@@ -70,12 +72,12 @@ const closeNavContent = () => {
 
     <div class="blocks-cotainer">
       <div class="blocks">
-        <div
-          class="block"
-          v-for="item in blocksArr"
-          :key="item.key"
-          :class="{ shimmer: item.isShimmer }"
-        ></div>
+        <div class="block" v-for="item in blocksArr" :key="item.key">
+          <div class="block-inside" :class="{ shimmer: item.isShimmer }"></div>
+          <div v-if="item.ball" class="ball" :class="[`ball${item.ball}`]">
+            0
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -93,11 +95,22 @@ const closeNavContent = () => {
   }
 }
 
+@keyframes moveRight {
+  0% {
+    transform: translate(-50%, -50%);
+  }
+
+  100% {
+    transform: translate(900%, -50%);
+  }
+}
+
 .mobile-view {
   width: 390px;
   height: 844px;
   background: #d6d6d6;
   position: relative;
+  overflow: hidden;
 }
 
 .nav {
@@ -129,14 +142,41 @@ const closeNavContent = () => {
   .block {
     height: 100px;
     border: black solid 2px;
-    background: radial-gradient(
-      circle,
-      rgba(113, 81, 95, 1) 81%,
-      rgba(0, 0, 0, 1) 100%
-    );
 
-    &.shimmer {
-      animation: fadeInOut 0.5s infinite;
+    position: relative;
+
+    .block-inside {
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(
+        circle,
+        rgba(113, 81, 95, 1) 81%,
+        rgba(0, 0, 0, 1) 100%
+      );
+      position: relative;
+      z-index: 3;
+
+      &.shimmer {
+        animation: fadeInOut 0.5s infinite;
+      }
+    }
+
+    & .ball {
+      width: 30px;
+      height: 30px;
+      background-color: #a5f12b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 4;
+
+      animation: moveRight 2s infinite ease-in-out;
     }
   }
 }
