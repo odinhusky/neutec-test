@@ -1,5 +1,4 @@
 <script setup>
-// import { ref } from "vue";
 const emit = defineEmits(["openNavContent"]);
 
 const openNavContent = () => {
@@ -32,15 +31,15 @@ const openNavContent = () => {
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
-}
 
-.line1 {
-  top: 10px;
-}
-.line2 {
-  top: 15px;
-}
-.line3 {
-  top: 20px;
+  &.line1 {
+    top: 10px;
+  }
+  &.line2 {
+    top: 15px;
+  }
+  &.line3 {
+    top: 20px;
+  }
 }
 </style>

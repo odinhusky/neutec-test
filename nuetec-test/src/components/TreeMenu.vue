@@ -1,5 +1,5 @@
 <script setup name="tree-menu">
-import { ref, inject, computed } from "vue";
+import { inject, computed } from "vue";
 
 const { text, depth } = defineProps({
   text: String,

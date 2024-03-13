@@ -2,7 +2,7 @@
 import { ref, provide } from "vue";
 import data from "../assets/data";
 
-// % Components
+// ^ Components
 import TreeMenu from "./TreeMenu.vue";
 
 defineProps({
